@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block image %}
+
+<h4 align="right" style="font-family: Comic sans MS;color: #ff8000">Please Wait loading......!Please maintain light....!</h4>
+
+<div  align="right" style="display: block;text-align: center;margin-left: auto; margin-right: auto;">   <!--style="padding-right: 50px; margin-left: auto; margin-right: auto; -->
+    <img src={{ url_for('video_feed') }} width="400" height="250" alt=".LIVE" align="right" hspace="20" >   </img><!-- 500,300 -->
+    
+
+   
+</div>
+<div  align="right" style="display: block;text-align: center;margin-left: auto; margin-right: auto;">   <!--style="padding-right: 50px; margin-left: auto; margin-right: auto; -->
+    
+    
+    <img src={{ url_for('video_feed') }} width="400" height="250" alt=".LIVE" align="right" hspace="20">   </img> 
+   
+</div>
+
+
+
+{% endblock %}  
+
+       
+       

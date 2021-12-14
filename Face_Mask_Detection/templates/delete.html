@@ -1,0 +1,53 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <title>delete record</title>  
+</head>  
+<body>  
+  
+  <h3>Remove record from the list</h3>  
+ 
+<table border=5>  
+    <thead>  
+        <td>ID</td>  
+        <td>Camera Name</td>  
+        <td>Camera IP Address URL</td>  
+         
+    </thead>  
+      
+    {% for row in rows %}  
+      
+        <tr>  
+            <td>{{row["id"]}}</td>  
+            <td>{{row["cam_name"]}}</td>  
+            <td>{{row["cam_url"]}}</td>  
+            
+        </tr>  
+      
+    {% endfor %}  
+</table>  
+<br><br>   
+
+<!-- <form action="/deleterecord" method="post">   -->
+Camera Id <input type="text" name="id">  
+<input type="submit" value="Submit">  
+</form>
+
+
+
+function delete_row() {
+  var id = document.getElementById("select_id").value - 1;
+  var table = document.getElementById("table");
+  rowsCount = table.querySelectorAll('tr[id="' + id + '"');
+
+  for (var i = 0; i < rowsCount.length; i++) {
+    table.deleteRow(rowsCount[i].rowIndex);
+  }
+
+}
+
+
+
+  
+</body>  
+</html>  

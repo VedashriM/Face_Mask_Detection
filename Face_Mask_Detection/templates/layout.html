@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Face-Mask-Detection</title>
+    <link rel="icon" href="https://img.icons8.com/bubbles/50/000000/coronavirus.png" type="image/gif" sizes="16x16">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+    <style>
+        img {
+          border-radius: 20px;
+        }
+       .nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+    
+        .nav li {
+            float: left;
+        }
+    
+         li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+    
+        li a:hover:not(.active) {
+            background-color: #111;
+        }
+        .active {
+            background-color: rgb(240, 102, 10);
+        }
+        
+        li {
+            float: left;
+        }
+
+      
+
+        select{
+              margin:0;
+              background-color: black; 
+              color: #ff7f50;  
+              text-decoration: none;
+              <!-- text-shadow:0 1px 0 rgba(0,0,0,0.4);   -->
+              width : 150px;
+              height : 30px;
+              border-radius: 36px;
+              }
+
+     
+        .foo{
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        .foo{
+            width: 100%;
+            background-color: #555;
+            overflow: auto;
+        }
+        .foo ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+        .foo li {
+            float: left;
+            padding: 12px;
+            color: white;
+            text-decoration: none;
+            font-size: 17px;
+            width: 25%;
+            text-align: center;
+        }
+        .tech li{
+            float:none;
+        }
+       
+    
+    </style>
+</head>
+<body style="background-image: url({{ url_for('static', filename='canva.png') }});background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;opacity: 2;">
+    <div class= "nav">
+    <ul>
+        <li><a class="active" href="/">Home</a></li>
+        <li><a href="/image">Image</a></li>
+       <!-- <li><a href="/vedio">Video</a></li> -->
+        <li><a href="/technology">Technology</a></li>
+        <li ><a href="/" style="color:rgb(240, 102, 10); ">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Face Mask Detection</a></li>
+        
+    </ul>
+    </div>
+    {% block image %}
+    {% endblock %}     
+
+
+
+    <!-- Sidebar/menu -->
+    <nav class="sidebar" style="z-index:5;width:230px;height:450px; font-weight:bold;" id="mySidebar"><br>
+       
+       
+       <div class="w3-bar-block">
+        <label for="selectdetection" style="color:#ff6600; font-size:20px;"><b>Select Activity Here..!!</b></label><br><br>
+        <select id="detect" name="detect" style="width:135px;>
+         <option value="default"> </option>
+         <option value="mask"> Mask Detection</option>
+         <option value="eye"> Eye Detection</option>
+         <option value="smile"> Smile Detection</option>
+       
+        </select><br><br>
+    
+    
+       <label for="selectdetection" style="color:#ff6600; font-size:20px;">Select Camera:</label><br><br>
+       <select id="cam_01" name="cam_01" onchange="setIframeSource();">
+         {% for row in rows : %}
+         <option value="cam_{{['id']}}">{{row['cam_name']}}</option>
+       
+         {% endfor %}
+       
+       </select><br><br>
+       <select id="cam_02" name="cam_02" onchange="setIframeSource();">
+         {% for row in rows : %}
+           <option value="cam_{{['id']}}">{{row['cam_name']}}</option>
+       
+         {% endfor %}
+       
+       </select><br><br>
+       <label for="cam_btn" style="color:#ff6600; font-size:20px;">Add/Delete Camera:</label><br><br>
+       <button id="myBtn" onclick="window.open('/savedetails', 'Add_Url', 'width=200,height=150');" class='btn' style="border-radius:15px; height:30px;" >Add <i class="fa fa-camera"></i></button>
+       
+       <button id="myBtn_1" onclick="window.open('/deleterecord', 'del_URL', 'width=200,height=150');" class='btn' style="border-radius:15px; height:30px;">Delete <i class="fa fa-camera"></i></button>
+       <br><br>
+    
+      <!-- <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Contact</a>   -->
+      </div>
+   </nav><br>
+
+<!-- Video Screen -->
+
+
+   
+
+
+
+
+    <div class="foo">
+        <ul>
+            <li><h3 style="font-family: Comic sans MS;">Developed by @Vedashri</h3></li>
+            <li><a class="right" href="https://www.linkedin.com/in/vedashri-mahajan-60b5261a6/" target="_blank"><i class="fa fa-linkedin" style="font-size:24px;color: orange;"></i></a></li>
+            <li><a class="right" href="https://github.com/VedashriM" target="_blank"><i class="fa fa-github" style="font-size:24px;color: orange;"></i></a></li>
+        </ul>
+
+    </div>
+
+
+<!--    
+<script>
+
+ 
+</script>
+
+-->
+
+
+
+</body>
+</html>

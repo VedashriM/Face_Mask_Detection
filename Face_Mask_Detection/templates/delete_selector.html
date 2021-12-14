@@ -1,0 +1,94 @@
+<!DOCTYPE html>  
+<html>  
+
+
+<head>
+    <title>delete record</title> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Python Flask How to Delete Multiple records using checkbox with getlist and pymysql</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+
+
+<body>  
+  
+   
+ 
+
+<div class="container">
+ <div class="row">
+        <div class="col-md-12">
+        <p><h2>Remove selected records </h2></p>
+        <div class="table-responsive">
+        <form method="post" action="/deleterecord">        
+        <table id="mytable" class="table table-bordred table-striped" border=5>
+             <thead>  
+                 <td><input type="checkbox" id="checkall" /></td>
+                 <td>ID</td>  
+                 <td>Camera Name</td>  
+                 <td>Camera IP Address URL</td>  
+         
+                 
+            </thead>
+            
+            {% for rw in rows : %}  
+            
+             <tr>
+                <td><input type="checkbox" name="mycheckbox" class="checkthis" value="{{rw['id']}}" /></td> 
+                <td>{{rw['id']}}</td>  
+                <td>{{rw['cam_name']}}</td>  
+                <td>{{rw['cam_url']}}</td>  
+            
+             </tr>  
+      
+            {% endfor %}  
+            
+  </table><br><br><input type="submit" value="Delete All Selected" class="btn btn-primary">  
+  <br/>
+
+<!--  {% if msg %}
+  <div class="alert alert-danger" role="alert">{{ msg }}</div>
+  {% endif %}     -->
+
+       </form>        
+     </div>
+   </div>
+ </div>
+</div>
+
+
+  
+
+
+
+
+
+
+<script>
+$(document).ready(function(){
+$("#mytable #checkall").click(function () {
+        if ($("#mytable #checkall").is(':checked')) {
+            $("#mytable input[type=checkbox]").each(function () {
+                $(this).prop("checked", true);
+            });
+ 
+        } else {
+            $("#mytable input[type=checkbox]").each(function () {
+                $(this).prop("checked", false);
+            });
+        }
+    });
+     
+    $("[data-toggle=tooltip]").tooltip();
+});
+ 
+</script>
+
+  
+</body>  
+</html>  
